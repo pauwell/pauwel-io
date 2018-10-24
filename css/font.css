@@ -1,0 +1,39 @@
+body * {
+  font-family: "Raleway", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+nav {
+  font-family: "Cardo", serif;
+}
+
+header {
+  font-size: 2.7em;
+  line-height: 120px;
+}
+
+nav {
+  text-align: center;
+  font-weight: bold;
+}
+
+main > article,
+main > aside {
+  text-align: justify;
+}
+
+.section-meta-data {
+  font-style: italic;
+  font-size: small;
+}
+
+footer {
+  font-size: 0.8em;
+  text-align: right;
+}

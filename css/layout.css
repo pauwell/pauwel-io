@@ -1,0 +1,60 @@
+.page {
+  max-width: 74em;
+  margin: 10px auto;
+  padding-top: 10px;
+}
+
+header {
+  height: 120px;
+  margin: 0 3%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px 3%;
+}
+
+nav > a {
+  width: 25%;
+  padding: 5px 0;
+  border-radius: 3px;
+}
+
+main {
+  padding: 0 3%;
+}
+
+main > article {
+  width: 65%;
+  float: left;
+}
+
+/* Articles take the full width on screens smaller than tablet. */
+@media only screen and (max-width: 767px) {
+  main > article {
+    width: 100%;
+  }
+}
+
+main > aside {
+  width: 33%;
+  float: right;
+}
+
+/* Hide side-bar on screens smaller than tablet. */
+@media only screen and (max-width: 767px) {
+  main > aside {
+    display: none;
+  }
+}
+
+footer {
+  clear: left;
+  padding-top: 10px;
+  padding: 8px 3%;
+}
+
+footer > .left {
+  float: left;
+}
