@@ -1,3 +1,7 @@
+body{
+  background: #f9f9f0;
+}
+
 .page {
   background: #fafafa;
   border: 1px solid lightgray;
@@ -7,11 +11,17 @@ header {
   color: white;
 }
 
+nav{
+  background: white;
+}
+
 nav > a {
   color: black;
+  background: whitesmoke;
   text-decoration: none;
+  border-bottom: 1px solid lightgray;
 }
 
 nav > a:hover {
-  background: lightgray;
+  background: rgb(226, 226, 226);
 }

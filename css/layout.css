@@ -10,9 +10,11 @@ header {
 }
 
 nav {
+  position: sticky;
+  top: 0px;
   display: flex;
   justify-content: space-evenly;
-  padding: 5px 3%;
+  margin: 0 3%;
 }
 
 nav > a {
