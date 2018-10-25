@@ -3,8 +3,9 @@
 .page {
   max-width: 74em;
   margin: 10px auto;
-  padding-top: 10px;
+  padding-top: 18px;
 }
+
 
 header {
   height: 120px;
@@ -23,6 +24,7 @@ nav > a {
   width: 25%;
   padding: 5px 0;
   border-radius: 3px;
+  height: 2em;
 }
 
 main {
