@@ -13,36 +13,41 @@ h6,
 header,
 nav {
   font-family: "Cardo", serif;
+  letter-spacing: 0.1em;
 }
 
 header {
   font-size: 2.7em;
-  line-height: 120px;
-  letter-spacing: 0.1em;
+  line-height: 3em;
 }
 
 nav {
   text-align: center;
   font-weight: bold;
-  letter-spacing: 0.1em;
 }
 
-nav > a{
+nav > a {
   line-height: 2em;
 
   /* TODO is uppercase a good idea? */
   /*text-transform: uppercase;*/
 }
 
-main > article,
-main > aside {
+main article,
+main aside {
   text-align: justify;
   line-height: 1.6em;
 }
 
 /* Space between article-sections. */
-main > article > section:not(:last-of-type) {
+main article > section:not(:last-of-type) {
   margin-bottom: 3.2em;
+}
+
+#content-download > article,
+#content-projects > article,
+#content-contact > article {
+  width: 100%;
 }
 
 .section-meta-data {
