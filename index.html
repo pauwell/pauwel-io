@@ -11,14 +11,24 @@
   <title>pauwel.io - Home</title>
 
   <!-- Styles. -->
-  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-  <link rel="stylesheet" type="text/css" href="css/layout.css" />
-  <link rel="stylesheet" type="text/css" href="css/image.css" />
+  <link rel="stylesheet" type="text/css" href="css/animation.css" />
   <link rel="stylesheet" type="text/css" href="css/color.css" />
   <link rel="stylesheet" type="text/css" href="css/font.css" />
+  <link rel="stylesheet" type="text/css" href="css/image.css" />
+  <link rel="stylesheet" type="text/css" href="css/layout.css" />
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+
 
   <!-- Fonts. -->
   <link href="https://fonts.googleapis.com/css?family=Cardo|Raleway" rel="stylesheet">
+
+  <!-- HightlightJS. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/handlebars.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css" />
+  <script>hljs.initHighlightingOnLoad();</script>
+
 </head>
 
 <body>
@@ -30,14 +40,22 @@
 
     <!-- Header. -->
     <header>&nbsp;pauwel.io
+      <!-- Menu icon. -->
+      <div class="menu-icon">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
     </header>
+
+
 
     <!-- Navigation. -->
     <nav>
-      <a href="#" for="content-home">Home</a>
-      <a href="#" for="content-projects">Projects</a>
-      <a href="#" for="content-download">Download</a>
-      <a href="#" for="content-contact">Contact</a>
+      <a href="#" class="hidden" for="content-home">Home</a>
+      <a href="#" class="hidden" for="content-tinytemplates">Tiny Templates</a>
+      <a href="#" class="hidden" for="content-chip8">Chip 8</a>
+      <a href="#" class="hidden" for="content-download">Download</a>
     </nav>
 
     <!-- Main. -->
@@ -106,15 +124,10 @@
         <aside>
           <h1>Aside</h1>
           <p>
-            Webtwo ipsum vuvox knewton. zlio kiko convore. Revver bubbli imeem edmodo kaboodle udemy, twones xobni heroku appjet, blekko
-            zapier akismet gooru. Orkut cuil orkut joukuu lijit lanyrd twones, orkut vuvox tivo jaiku jumo. gooru ifttt tumblr.
-            Dopplr blekko voki yoono zillow klout skype wufoo, eskobo kaboodle plickers tivo hipmunk. Geni palantir squidoo
-            plaxo scribd geni, ning glogster spotify. Zoodles zynga dropio jiglu kosmix chegg wufoo handango tumblr, twitter
-            edmodo disqus zappos wikia whrrl. Skype stypi plickers zapier, unigo. Convore kiko flickr chumby edmodo koofers,
-            yoono spotify twitter babblely quora, odeo edmodo zappos foodzie. Disqus wikia skype palantir glogster, flickr
-            reddit mog, lala twitter vuvox.
+            Hey! I am Paul and like to write free software. Please have a look at my projects. You can download all of them our check
+            out the full source code on GitHub.
           </p>
-          <p>Further information:</p>
+          <p>Overview:</p>
           <ul>
             <li>Some information</li>
             <li>More information</li>
@@ -124,13 +137,127 @@
       </div>
       <!-- #content-home -->
 
-      <!-- Content for `projects`. -->
-      <div id="content-projects">
-        <!-- Articles. -->
+      <!-- Content for `tinytemplates`. -->
+      <div id="content-tinytemplates">
         <article>
           <section>
-            <h1>Projects</h1>
-            <div class="section-meta-data">24/10/2018 by Test Author</div>
+            <h1>TinyTemplatesJS</h1>
+            <p>
+              <em>TinyTemplates</em> is a tiny templating engine in javascript that lets you create reusable, reactive components
+              that can be rendered and updated in the DOM. The templates are created by using a view that consists of the
+              standard the HTML syntax combined with a few additional nodes that work as statements (<code>if</code>) or
+              loops (<code>for</code>, <code>foreach</code>). Data, that needs to be reactive, is stored as <em>state</em>
+              that embeds in the view to get updated if any changes are made to the data.
+              <a href="https://github.com/fiduswriter/diffDOM">diffDOM</a> is used to detect and patch these changes in as
+              few steps as possible. Please have a look at the example below for a better understanding of the syntax.
+            </p>
+          </section>
+
+          <section>
+            <h3>Example</h3>
+            <pre><code class="javascript">let counter = new TinyTemplate( 
+    // Name
+  "counter", 
+  { // State
+    number: 0 
+  },
+  { // Methods
+    increaseNumber: function() {
+      this.changeState({ number: this.getState("number") + 1 });
+    },
+    reset: function() {
+      this.changeState({ number: 0 });
+    }
+  },// Template-view
+  `&lt;div class="counter&gt;
+      &lt;fieldset&gt;
+        &lt;legend&gt;&lt;b&gt;Counter&lt;/b&gt;&lt;/legend&gt;
+        &lt;p&gt;Counting: {{number}}&lt;/p&gt;
+        &lt;button on-event="onclick" call="increaseNumber"&gt;Increment&lt;/button&gt;
+        &lt;button on-event="onclick" call="reset"&gt;Reset&lt;/button&gt;
+        &lt;/fieldset&gt;
+    &lt;/div&gt;`
+);
+
+// Mount the template to a root node to add it to the DOM.
+counter.mount(document.getElementById("root-node-id"));
+        </code></pre>
+          </section>
+
+          <section>
+            <h2>The string-view syntax in TinyTemplatesJS</h2>
+          </section>
+          <section>
+            <h3>Mustaches</h3>
+
+            Double mustaches inside the <code>stringView</code> are replaced by their corresponding value. The parser first
+            takes the value inside the mustaches and searches for it in the state-object, if it is not in the state it checks
+            wether the value is a local variable and replaces it. It is also possible to access the properties of those variables:
+
+            <pre><code class="mustaches">&lt;p&gt;Access: {{stateObject}}&lt;/p&gt;
+&lt;p&gt;Access: {{localVariable}}&lt;/p&gt;
+&lt;p&gt;Access: {{localVariable.property}}&lt;/p&gt;
+            </code></pre>
+            <h3>State-changes</h3>
+
+            <p>If you want to change any of the state variables (e.g. name), you need to call <code>this.setState({name: 'NewName'})</code>.
+              This way the engine registers the specific changes to the data to only update the specific parts of the DOM
+              that are affected by the change. If you change the state without the <code>setState()</code>-method, it wont
+              update the DOM.</p>
+            <pre><code class="javascript">this.changeState({ number: this.getState("number") + 1 });</code></pre>
+
+            <h3>If</h3>
+            <p>
+              The <code>if</code> statement only renders the containing nodes if the condition (<code>expr</code>) inside
+              the braces (<code>this.getState('payment') === 'visa'</code>) evaluates to true. The statement ends with a
+              <code>/fi</code>.
+            </p>
+            <pre><code class="mustaches">&lt;if expr="{{payment}} === 'visa'" )&gt;
+  &lt;p&gt;VISA payment used!&lt;/p&gt;
+&lt;/fi&gt;
+            </code></pre>
+            <h3>For</h3>
+
+            <p>
+              Use <code>for</code> loops to render nodes multiple times. The syntax should be self explaining. The first
+              attribute <code>var</code> declares the index variable, <code>from</code> and <code>to</code> define the range
+              of the loop and <code>step</code> is used to determine the number by which the index variable increments each
+              cycle. The index variable <code>j</code> can be accessed from anywhere inside the loop using the 'mustache'
+              syntax.
+            </p>
+
+            <pre><code class="mustaches">&lt;for var="j" from="0" to="{{max}}" step="2"&gt;
+  &lt;p&gt;Counting: {{ j }}&lt;/p&gt;
+&lt;/for&gt;
+            </code></pre>
+
+            <h3>Foreach</h3>
+            <p>
+              The <code>foreach</code> loop is the range based counterpart to the standard <code>for</code> loop we talked
+              about before. It consists of four attributes of which at least two have to be provided. It is crucial to pass
+              the <code>elem</code> attribute which contains the current list item (or contains the name of the variable
+              that contains the current list item to be more precise) and the list itself, via <code>in</code>. The other
+              two optional attributes are the index counter (<code>idx</code>) and <code>arr</code>, which contains the array
+              itself.
+            </p>
+
+            <pre><code class="mustaches">&lt;foreach elem="elem" idx="i" arr="arr" in="this.getState('animals')"&gt;
+  &lt;div class="cart-product"&gt;{{fruit.product}}&lt;/div&gt;
+  &lt;div class="cart-price"&gt;{{fruit.price}}&lt;/div&gt;
+  &lt;br&gt;
+&lt;/foreach&gt;
+            </code></pre>
+          </section>
+        </article>
+      </div>
+      <!-- #content-tutorials -->
+
+      <!-- Content for `chip8`. -->
+      <div id="content-chip8">
+        <h1>Projects</h1>
+        <article>
+          <section>
+            Chip-8
           </section>
         </article>
       </div>
@@ -170,12 +297,6 @@
         </article>
       </div>
       <!-- #content-download -->
-
-      <!-- Content for `contact`. -->
-      <div id="content-contact">
-        <p>Contact</p>
-      </div>
-      <!-- #content-contact -->
 
     </main>
 

@@ -14,6 +14,7 @@ header,
 nav {
   font-family: "Cardo", serif;
   letter-spacing: 0.1em;
+  text-align: left;
 }
 
 header {
@@ -44,12 +45,6 @@ main article > section:not(:last-of-type) {
   margin-bottom: 3.2em;
 }
 
-#content-download > article,
-#content-projects > article,
-#content-contact > article {
-  width: 100%;
-}
-
 .section-meta-data {
   font-style: italic;
   font-size: small;
@@ -58,4 +53,11 @@ main article > section:not(:last-of-type) {
 footer {
   font-size: 0.8em;
   text-align: right;
+}
+
+pre > code,
+pre > code > span,
+pre > code > span * {
+  font-family: "Sans Mono", "Consolas", "Courier", monospace;
+  line-height: initial;
 }
