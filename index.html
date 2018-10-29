@@ -145,12 +145,12 @@
             <h1>TinyTemplatesJS</h1>
             <p>
               <em>TinyTemplates</em> is a tiny templating engine in javascript that lets you create reusable, reactive components
-              that can be rendered and updated in the DOM. The templates are created by using a view that consists of the
-              standard the HTML syntax combined with a few additional nodes that work as statements (<code>if</code>) or
-              loops (<code>for</code>, <code>foreach</code>). Data, that needs to be reactive, is stored as <em>state</em>
+              that can be rendered and updated in the DOM. The templates are using standard HTML syntax combined with a few
+              additional nodes that work as statements (<code>if</code>) or loops (<code>for</code>,
+              <code>foreach</code>). Data, that needs to be reactive, is stored as <em>state</em>
               that embeds in the view to get updated if any changes are made to the data.
-              <a href="https://github.com/fiduswriter/diffDOM">diffDOM</a> is used to detect and patch these changes in as
-              few steps as possible. Please have a look at the example below for a better understanding of the syntax.
+              <a href="https://github.com/fiduswriter/diffDOM">diffDOM</a> is used to detect and patch these changes. Please
+              have a look at the example below for a better understanding of the syntax.
             </p>
           </section>
 
@@ -186,14 +186,19 @@ counter.mount(document.getElementById("root-node-id"));
           </section>
 
           <section>
-            <h2>The string-view syntax in TinyTemplatesJS</h2>
+            <h3>Result</h3>
+            <div id="tinytemplates-example"></div>
+          </section>
+
+          <section>
+            <h2>Overview</h2>
           </section>
           <section>
             <h3>Mustaches</h3>
 
-            Double mustaches inside the <code>stringView</code> are replaced by their corresponding value. The parser first
-            takes the value inside the mustaches and searches for it in the state-object, if it is not in the state it checks
-            wether the value is a local variable and replaces it. It is also possible to access the properties of those variables:
+            The identifiers inside double mustaches are replaced by their corresponding value in the state-object. If the parser can
+            not find a corresponding value in the state-object, it searches for local variables with the same name and replaces
+            it. It is also possible to access the properties of those variables:
 
             <pre><code class="mustaches">&lt;p&gt;Access: {{stateObject}}&lt;/p&gt;
 &lt;p&gt;Access: {{localVariable}}&lt;/p&gt;
@@ -201,20 +206,19 @@ counter.mount(document.getElementById("root-node-id"));
             </code></pre>
             <h3>State-changes</h3>
 
-            <p>If you want to change any of the state variables (e.g. name), you need to call <code>this.setState({name: 'NewName'})</code>.
-              This way the engine registers the specific changes to the data to only update the specific parts of the DOM
-              that are affected by the change. If you change the state without the <code>setState()</code>-method, it wont
-              update the DOM.</p>
+            <p>If you want to change the value of a variable from the state-object (e.g. `name`), you need to call <code>this.changeState({name: 'NewName'})</code>.
+              This way the engine registers the specific updates to the data to trigger a reparsing and change the parts
+              of the DOM that are affected by the updates.</p>
             <pre><code class="javascript">this.changeState({ number: this.getState("number") + 1 });</code></pre>
 
             <h3>If</h3>
             <p>
-              The <code>if</code> statement only renders the containing nodes if the condition (<code>expr</code>) inside
-              the braces (<code>this.getState('payment') === 'visa'</code>) evaluates to true. The statement ends with a
+              The body of an <code>if</code> statement only gets rendered when the condition (<code>expr</code>) inside the
+              braces (<code>this.getState('payment') === 'visa'</code>) evaluates to true. The statement ends with a
               <code>/fi</code>.
             </p>
             <pre><code class="mustaches">&lt;if expr="{{payment}} === 'visa'" )&gt;
-  &lt;p&gt;VISA payment used!&lt;/p&gt;
+  &lt;p&gt;VISA was selected!&lt;/p&gt;
 &lt;/fi&gt;
             </code></pre>
             <h3>For</h3>
@@ -223,8 +227,8 @@ counter.mount(document.getElementById("root-node-id"));
               Use <code>for</code> loops to render nodes multiple times. The syntax should be self explaining. The first
               attribute <code>var</code> declares the index variable, <code>from</code> and <code>to</code> define the range
               of the loop and <code>step</code> is used to determine the number by which the index variable increments each
-              cycle. The index variable <code>j</code> can be accessed from anywhere inside the loop using the 'mustache'
-              syntax.
+              cycle. The index variable (<code>j</code> in our case) can be accessed from anywhere inside the loop using
+              'mustaches'.
             </p>
 
             <pre><code class="mustaches">&lt;for var="j" from="0" to="{{max}}" step="2"&gt;
@@ -234,12 +238,11 @@ counter.mount(document.getElementById("root-node-id"));
 
             <h3>Foreach</h3>
             <p>
-              The <code>foreach</code> loop is the range based counterpart to the standard <code>for</code> loop we talked
-              about before. It consists of four attributes of which at least two have to be provided. It is crucial to pass
-              the <code>elem</code> attribute which contains the current list item (or contains the name of the variable
-              that contains the current list item to be more precise) and the list itself, via <code>in</code>. The other
-              two optional attributes are the index counter (<code>idx</code>) and <code>arr</code>, which contains the array
-              itself.
+              The <code>foreach</code> loop is the range based counterpart to the standard <code>for</code> loop. It takes
+              up to four attributes of which at least two must be provided. The <code>elem</code> attribute, which contains
+              the current list item (or contains the key to the variable that contains the current list item to be more precise)
+              and the list itself, specified in <code>in</code>. The other two optional attributes are
+              <code>idx</code> that stores the index of the current item and <code>arr</code>, which contains the array itself.
             </p>
 
             <pre><code class="mustaches">&lt;foreach elem="elem" idx="i" arr="arr" in="this.getState('animals')"&gt;
@@ -314,6 +317,7 @@ counter.mount(document.getElementById("root-node-id"));
   </div>
 
   <!-- Javascript. -->
+  <script src="js/tiny-templates.js"></script>
   <script src="js/main.js" async></script>
 </body>
 

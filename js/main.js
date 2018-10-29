@@ -88,3 +88,33 @@ buttonContentDownload.addEventListener("click", function() {
 buttonMenuIcon.addEventListener("click", function() {
   toggleMenu();
 });
+
+// Tiny Templates example.
+let tinyCounter = new TinyTemplate(
+  // Name
+  "counter",
+  {
+    // State
+    number: 0
+  },
+  {
+    // Methods
+    increaseNumber: function() {
+      this.changeState({ number: this.getState("number") + 1 });
+    },
+    reset: function() {
+      this.changeState({ number: 0 });
+    }
+  }, // Template-view
+  /*html*/ `<div class="counter">
+      <fieldset>
+        <legend><b>Counter</b></legend>
+        <p>Counting: {{number}}</p>
+        <button on-event="onclick" call="increaseNumber">Increment</button>
+        <button on-event="onclick" call="reset">Reset</button>
+      </fieldset>
+    </div>`
+);
+
+// Mount the template to a root node to add it to the DOM.
+tinyCounter.mount(document.getElementById("tinytemplates-example"));
