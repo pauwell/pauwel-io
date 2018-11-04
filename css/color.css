@@ -47,6 +47,10 @@ nav.sticky {
   }
 }
 
+.desktop .application.application-maximized{
+  box-shadow: -6px 8px 34px 0 rgba(14,20,26,.6) !important;
+}
+
 table,
 table th,
 table td {

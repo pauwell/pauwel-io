@@ -108,6 +108,10 @@ main aside {
   }
 }
 
+#c8s-example{
+  height: 350px;
+}
+
 footer {
   clear: left;
   padding-top: 10px;

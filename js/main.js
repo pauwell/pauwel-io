@@ -44,8 +44,7 @@ window.addEventListener("scroll", function() {
 // Show `home`-content on startup.
 window.addEventListener("load", function() {
   hideContent();
-  //contentHome.style.display = "block";
-  contentTiny.style.display = "block";
+  contentHome.style.display = "block";
 });
 
 // Hide every content block.
@@ -118,3 +117,44 @@ let tinyCounter = new TinyTemplate(
 
 // Mount the template to a root node to add it to the DOM.
 tinyCounter.mount(document.getElementById("tinytemplates-example"));
+
+// Chip-8 script example.
+let c8sdemo = null;
+let demo_node = document.querySelector("#c8s-example");
+
+let run_demo = function() {
+  if (demo_node.hasChildNodes()) demo_node.removeChild(demo_node.firstChild);
+
+  c8sdemo = new GDemo("#c8s-example");
+
+  c8sdemo
+    .openApp("editor", { minHeight: "350px", windowTitle: "demo.c8s" })
+    .write(
+      `
+VAR a = 1
+FOR i=4 TO 10 STEP 2:
+  IF a==1:
+    a+=2
+  ENDIF
+  a += 1
+ENDFOR
+`,
+      { onCompleteDelay: 2000 }
+    )
+    .openApp("terminal", { minHeight: "350px", promptString: "$" })
+    .command("c8s-compiler ./demo.c8s rom-output", { onCompleteDelay: 500 })
+    .respond("Compiler finished with 0 errors and 0 warnings!")
+    .command("od -t x1 rom-output", { onCompleteDelay: 500 })
+    .respond(
+      `
+0000000 60 01 61 04 62 0a 63 02 30 01 12 0e 70 02 70 01
+0000020 81 34 51 24 12 08
+0000030
+`
+    )
+    .command("")
+    .end();
+};
+
+run_demo();
+setInterval(run_demo, 24000);

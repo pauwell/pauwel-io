@@ -23,6 +23,10 @@
   <!--<link href="https://fonts.googleapis.com/css?family=Cardo|Raleway" rel="stylesheet">-->
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Work+Sans" rel="stylesheet">
 
+  <!-- Glorious demo -->
+  <link rel="stylesheet" href="https://unpkg.com/@glorious/demo/dist/gdemo.min.css">
+  <script src="https://unpkg.com/@glorious/demo/dist/gdemo.min.js"></script>
+
   <!-- HightlightJS. -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
@@ -68,62 +72,51 @@
         <!-- Articles. -->
         <article>
           <section>
-            <h1>Lorem ipsum dolor</h1>
-            <div class="section-meta-data">24/10/2018 by Test Author</div>
+            <h1>Chip-8 Script</h1>
+            <div class="section-meta-data">04/11/2018</div>
             <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-              aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-              gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-              vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-              Lorem ipsum dolor sit amet.
+              Today I finished the first executable version of my little c8s-compiler (<em>c8s = Chip-8 script</em>). It
+              converts a tiny custom scripting language called <em>Chip-8 Script</em> into chip-8 machinecode. <em>C8s</em>
+              has a very limited set of features, since on the one hand Chip-8 has only 35 instructions of its own and on the other hand,
+              my goal was to generate as little overhead as possible through low abstraction.
+            </p>
+            <p><b>Currently supported features:</b></p>
+            <p>
+              Create variables with the keyword <em>var</em>. There can only be a maximum of 15 total due to Chip-8's limitations.
+              <pre><code>VAR a = 10
+VAR b = a
+              </code></pre>
             </p>
             <p>
-              Lorem ipsum dolor sit amet,consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-              aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-              gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit
-              in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan
-              et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-              Lorem ipsum dolor sit amet,
+              If-statements can have the following forms of condition: <code>V[x]==n, v[x]!=n, v[x]==V[y] </code>
+              <pre><code>IF a == 0:
+  ...
+ENDIF
+              </code></pre>
+            </p>
+            <p>
+              For-loops define an index-variable that counts to the value behind <em>to</em> and increases by the value behind
+              <em>step</em>.
+              <pre><code>FOR i=0 TO 10 STEP 2:
+  ...
+ENDFOR
+              </code></pre>
+            </p>
+            <p>
+              <div id="c8s-example"></div>
             </p>
           </section>
           <section>
-            <h1>Takimata sanctus</h1>
+            <h1>On learning to program</h1>
             <div class="section-meta-data">22/10/2018 by Test Author</div>
             <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-              aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-              gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-              vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-              Lorem ipsum dolor sit amet.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-              aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-              gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-              vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-              Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-              duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-              dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-              clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-              aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-              gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-              vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-              Lorem ipsum dolor sit amet.
+              Hello mellow
             </p>
           </section>
         </article>
 
         <aside>
-          <h1>Aside</h1>
+          <h1>Welcome</h1>
           <p>
             Hey! I am Paul and like to write free software. Please have a look at my projects. You can download all of them our check
             out the full source code on GitHub.
